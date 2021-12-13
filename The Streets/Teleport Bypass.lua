@@ -19,7 +19,7 @@ Root.RootJoint:Destroy()
 Root.Parent = workspace
 
 RunService.Stepped:Connect(function()
-    if Root then
+    if Root and Torso and Seat and firetouchinterest then
         firetouchinterest(Torso, Seat, 0)
         firetouchinterest(Torso, Seat, 1)
     end
