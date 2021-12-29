@@ -1,5 +1,5 @@
 local SERVER_HOP = true -- Might get you a cooldown better to do it in a private server
-local SERVER_HOP_DELAY = 60
+local SERVER_HOP_DELAY = 10
 
 
 if not game:IsLoaded() then game.Loaded:Wait() end
@@ -66,16 +66,18 @@ end
 
 
 function ServerHop()
-    local Servers = {}
-    local Url = game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")
-    for _, v in ipairs(HttpService:JSONDecode(Url).data) do
-        if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
-	    Servers[#Servers + 1] = v.id
+    pcall(function()
+        local Servers = {}
+        local Url = game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")
+        for _, v in ipairs(HttpService:JSONDecode(Url).data) do
+            if typeof(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+                Servers[#Servers + 1] = v.id
+            end
         end
-    end
-    if #Servers > 0 then
-	TeleportService:TeleportToPlaceInstance(game.PlaceId, Servers[math.random(1, #Servers)])
-    end
+        if #Servers > 0 then
+            TeleportService:TeleportToPlaceInstance(game.PlaceId, Servers[math.random(1, #Servers)])
+        end
+    end)
     delay(5, ServerHop)
 end
 
