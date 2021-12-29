@@ -68,16 +68,15 @@ end
 function ServerHop()
     local Servers = {}
     local Url = game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")
-	for _, v in ipairs(HttpService:JSONDecode(Url).data) do
-		if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
-			Servers[#Servers + 1] = v.id
-		end
-	end
-	if #Servers > 0 then
-		TeleportService:TeleportToPlaceInstance(game.PlaceId, Servers[math.random(1, #Servers)])
-	else
-	    delay(5, ServerHop)
+    for _, v in ipairs(HttpService:JSONDecode(Url).data) do
+        if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+	    Servers[#Servers + 1] = v.id
+        end
     end
+    if #Servers > 0 then
+	TeleportService:TeleportToPlaceInstance(game.PlaceId, Servers[math.random(1, #Servers)])
+    end
+    delay(5, ServerHop)
 end
 
 
