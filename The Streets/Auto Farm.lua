@@ -8,7 +8,7 @@ local spawn = task.spawn
 
 
 if not game:IsLoaded() then game.Loaded:Wait() end
-local Original = 455366377 or false
+local Original = game.PlaceId == 455366377 and true or false
 if not Original and game.PlaceId ~= 4669040 then return end
 
 
