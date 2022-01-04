@@ -38,7 +38,7 @@ function SetToolChams(Tool)
     local Parts = {}
     for _, v in ipairs(Tool:GetChildren()) do
         if v:IsA("BasePart") then
-            if v.Transparency == 1 then continue end
+            if not Tool:GetAttribute("DefaultsSet") and v.Transparency == 1 then continue end
             table.insert(Parts, v)
         end
     end
