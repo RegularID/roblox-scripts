@@ -5,6 +5,18 @@ local TOOL_CHAMS_REFLECTANCE = 0.5
 local TOOL_CHAMS_TRANSPARENCY = 0
 
 
+function GetToolParts(Tool)
+    local Parts = {}
+    for _, v in ipairs(Tool:GetChildren()) do
+        if v:IsA("BasePart") then
+            if v:GetAttribute("DefaultTransparency") == 1 then continue end
+            table.insert(Parts, v)
+        end
+    end
+    return Parts
+end
+
+
 function SetToolDefaults(Tool, Parts)
     if not Tool:GetAttribute("DefaultsSet") then
         for _, Part in ipairs(Parts) do
@@ -35,22 +47,11 @@ end
 
 
 function SetToolChams(Tool)
-    local Parts = {}
-    for _, v in ipairs(Tool:GetChildren()) do
-        if v:IsA("BasePart") then
-            if not v:GetAttribute("IgnoreTransparent") and v.Transparency == 1 then
-                v:SetAttribute("IgnoreTransparent", true)
-                continue
-            end
-            table.insert(Parts, v)
-        end
-    end
-    
-    SetToolDefaults(Tool, Parts)
+    SetToolDefaults(Tool, GetToolParts(Tool))
     if TOOL_CHAMS_ENABLED then
-        SetToolProperties(Parts, TOOL_CHAMS_COLOR, TOOL_CHAMS_MATERIAL, TOOL_CHAMS_REFLECTANCE, TOOL_CHAMS_TRANSPARENCY, true)
+        SetToolProperties(GetToolParts(Tool), TOOL_CHAMS_COLOR, TOOL_CHAMS_MATERIAL, TOOL_CHAMS_REFLECTANCE, TOOL_CHAMS_TRANSPARENCY, true)
     else
-        SetToolProperties(Parts)
+        SetToolProperties(GetToolParts(Tool))
     end
 end
 
