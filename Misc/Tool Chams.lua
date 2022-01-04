@@ -17,9 +17,9 @@ function GetToolParts(Tool)
 end
 
 
-function SetToolDefaults(Tool, Parts)
+function SetToolDefaults(Tool)
     if not Tool:GetAttribute("DefaultsSet") then
-        for _, Part in ipairs(Parts) do
+        for _, Part in ipairs(GetToolParts(Tool)) do
             Part:SetAttribute("DefaultColor", Part.Color)
             Part:SetAttribute("DefaultMaterial", Part.Material.Name)
             Part:SetAttribute("DefaultReflectance", Part.Reflectance)
@@ -33,8 +33,8 @@ function SetToolDefaults(Tool, Parts)
 end
 
 
-function SetToolProperties(Parts, Color, Material, Reflectance, Transparency, UsePartColor)
-    for _, Part in ipairs(Parts) do
+function SetToolProperties(Tool, Color, Material, Reflectance, Transparency, UsePartColor)
+    for _, Part in ipairs(GetToolParts(Tool)) do
         Part.Color = Color or Part:GetAttribute("DefaultColor")
         Part.Material = Material or Part:GetAttribute("DefaultMaterial")
         Part.Reflectance = Reflectance or Part:GetAttribute("DefaultReflectance")
@@ -47,11 +47,11 @@ end
 
 
 function SetToolChams(Tool)
-    SetToolDefaults(Tool, GetToolParts(Tool))
+    SetToolDefaults(Tool)
     if TOOL_CHAMS_ENABLED then
-        SetToolProperties(GetToolParts(Tool), TOOL_CHAMS_COLOR, TOOL_CHAMS_MATERIAL, TOOL_CHAMS_REFLECTANCE, TOOL_CHAMS_TRANSPARENCY, true)
+        SetToolProperties(Tool, TOOL_CHAMS_COLOR, TOOL_CHAMS_MATERIAL, TOOL_CHAMS_REFLECTANCE, TOOL_CHAMS_TRANSPARENCY, true)
     else
-        SetToolProperties(GetToolParts(Tool))
+        SetToolProperties(Tool)
     end
 end
 
