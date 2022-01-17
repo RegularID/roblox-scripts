@@ -2,26 +2,26 @@ local Directory = "https://raw.githubusercontent.com/RegularID/roblox-scripts/ma
 
 local Modules = {}
 local Directories = {
-    styles = Directory .. "config/styles",
-    tagtable = Directory .. "config/tagtable",
-    comment = Directory .. "literals/comment",
-    eof = Directory .. "literals/comment",
-    eol = Directory .. "literals/comment",
-    global = Directory .. "literals/comment",
-    identifier = Directory .. "literals/comment",
-    keyword = Directory .. "literals/comment",
-    method = Directory .. "literals/comment",
-    ["nil"] = Directory .. "literals/nil",
-    number = Directory .. "literals/number",
-    operator = Directory .. "literals/operator",
-    property = Directory .. "literals/property",
-    string = Directory .. "literals/string",
-    symbol = Directory .. "literals/symbol",
-    whitespace = Directory .. "literals/whitespace",
-    highlight = Directory .. "methods/highlight",
-    tokenizer = Directory .. "tokens/tokenizer",
-    tokentable = Directory .. "tokens/tokentable",
-    lexer = Directory .. "lexer"
+    ["config/styles"] = Directory .. "config/styles",
+    ["config/tagtable"] = Directory .. "config/tagtable",
+    ["literals/comment"] = Directory .. "literals/comment",
+    ["literals/eof"] = Directory .. "literals/eof",
+    ["literals/eol"] = Directory .. "literals/eol",
+    ["literals/global"] = Directory .. "literals/global",
+    ["literals/identifier"] = Directory .. "literals/identifier",
+    ["literals/keyword"] = Directory .. "literals/keyword",
+    ["literals/method"] = Directory .. "literals/method",
+    ["literals/nil"] = Directory .. "literals/nil",
+    ["literals/number"] = Directory .. "literals/number",
+    ["literals/operator"] = Directory .. "literals/operator",
+    ["literals/property"] = Directory .. "literals/property",
+    ["literals/string"] = Directory .. "literals/string",
+    ["literals/symbol"] = Directory .. "literals/symbol",
+    ["literals/whitespace"] = Directory .. "literals/whitespace",
+    ["methods/highlight"] = Directory .. "methods/highlight",
+    ["tokens/tokenizer"] = Directory .. "tokens/tokenizer",
+    ["tokens/tokentable"] = Directory .. "tokens/tokentable",
+    ["lexer"] = Directory .. "lexer"
 }
 
 
