@@ -2,7 +2,7 @@ return function(t_table, get_type)
     local keywords = {
         'and', 'break', 'do', 'else', 'elseif', 'end', 'for', 'function', 'if',
         'in', 'local', 'not', 'or', 'repeat', 'return', 'then', 'until', 'while',
-        'self', 'true', 'false'
+        'self', 'true', 'false', 'continue'
     }
     local cursor_progress = 0
     local buffer = ''
