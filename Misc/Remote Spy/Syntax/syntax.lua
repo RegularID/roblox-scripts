@@ -29,7 +29,7 @@ local Initialized = false
 local Count = 0
 for k, Path in pairs(Directories) do
     task.spawn(function()
-        Modules[k] = game:HttpGet(Path)
+        Modules[k] = game:HttpGet(Path .. ".lua")
         Count += 1
         if Count == 20 then
             Initialized = true
