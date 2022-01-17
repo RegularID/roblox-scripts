@@ -41,8 +41,9 @@ local wait = task.wait
 while not Initialized do wait() end
 
 _G.require = function(Path)
-    if Modules[Path] then
-        return loadstring(Path)()
+    local Module = Modules[Path]
+    if Module then
+        return loadstring(Module)()
     else
         warn("missing module", Path)
     end
