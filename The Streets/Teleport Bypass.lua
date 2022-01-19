@@ -37,8 +37,7 @@ function SitOnSeat()
     if Seat and not Seat.Occupant then
         if SitDebounce then return end
         SitDebounce = true
-        firetouchinterest(Torso, Seat, 0)
-        firetouchinterest(Torso, Seat, 1)
+        Seat:Sit(Humanoid)
         delay(0.5, function()
             SitDebounce = false
         end)
