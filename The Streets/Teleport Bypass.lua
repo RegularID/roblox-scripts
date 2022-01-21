@@ -34,13 +34,8 @@ local SitDebounce = false
 function SitOnSeat()
     if Character and Character.Parent == nil then return Loop:Disconnect() end
     if not Torso or not Root or not Humanoid or not Character then return Loop:Disconnect() end
-    if Seat and not Seat.Occupant then
-        if SitDebounce then return end
-        SitDebounce = true
-        Seat:Sit(Humanoid)
-        delay(0.5, function()
-            SitDebounce = false
-        end)
+    if Seat and not Seat.Occupant and not Seat:FindFirstChild("SeatWeld") then
+        pcall(Seat.Sit, Seat, Humanoid)
     else
         GetSeat()
     end
