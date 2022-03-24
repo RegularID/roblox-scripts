@@ -74,12 +74,9 @@ function Rebirth()
     Rebirth:InvokeServer()
 end
 
-
-function OnIdle()
-    VirtualUser:CaptureController()
-    VirtualUser:ClickButton2(Vector2.new())
+for Index, Connection in next, getconnections(Players.LocalPlayer.Idled) do 
+    Connection.Disable(Connection);
 end
-
 
 function Loop()
     local Ores = GetOres()
@@ -158,4 +155,3 @@ while not GetTycoon(Players.LocalPlayer) do wait() end
 
 
 RunService.Stepped:Connect(Loop)
-Players.LocalPlayer.Idled:Connect(OnIdle)
