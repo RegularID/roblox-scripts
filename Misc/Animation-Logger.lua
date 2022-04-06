@@ -183,9 +183,8 @@ CopyIdButton.TextSize = 14
 CopyIdButton.TextStrokeTransparency = 0.2
 CopyIdButton.Parent = Main
 CopyIdButton.MouseButton1Click:Connect(function()
-    if setclipboard then
-        local AssetId = Selected.Id
-        setclipboard(AssetId)
+    if setclipboard and Selected and Selected.Id then
+        setclipboard(Selected.Id)
     end
 end)
 
