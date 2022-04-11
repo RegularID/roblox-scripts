@@ -1,1 +1,0 @@
-return { font = 'font', bold = 'b', italic = 'i', underline = 'u', strikethrough = 's', smallcaps = 'sc' }
