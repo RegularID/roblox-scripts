@@ -1,25 +1,28 @@
-local Command = "Hat" -- Hat || Refresh || Vote || Trail || Shine || CClr
-local Argument = true
-
-
 local Remote = game:GetService("ReplicatedStorage"):FindFirstChild("b\7\n\7\n\7")
-function GetID()
-    local ID
-    Remote:FireServer("KuID")
-    local Ev
-    Ev = Remote.OnClientEvent:Connect(function(_, a)
-        for k, v in pairs(a) do
-            ID = v
-            break
-        end
-        Ev:Disconnect()
-    end)
-    repeat wait() until ID
-    return ID
-end
+if not Remote then return end
+
+local ID, Settings, Commands
+
+-- The ID doesn't change as of now, so u can save it as a global var
+Remote:FireServer("KuID")
+local Ev
+Ev = Remote.OnClientEvent:Connect(function(_, a)
+    ID = a[1]
+    Settings = a[3]
+    Commands = a[4]
+    Ev:Disconnect()
+end)
+
+repeat wait() until ID and Settings and Commands
 
 
-function FireCommand(Command, Argument)
-    local ID = GetID()
-    Remote:FireServer(ID .. "K" .. Command, Argument, ID)
+function FireCommand(Command:string, ...)
+    Remote:FireServer(ID .. "K" .. Command, ..., ID)
 end
+
+--Valid Commands: [Refresh, Hat, Trail, Shine, Kick]
+--[[ Example script, kicks localplayer out of the game n amount of times by the server
+for i = 1, 10000 do
+    FireCommand("Kick")
+end
+]]
